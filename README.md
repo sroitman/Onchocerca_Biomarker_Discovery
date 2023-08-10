@@ -7,6 +7,7 @@
 - Sofia Roitman (New England Biolabs, Ipswich, MA, US)
 
 ## Processing pipeline for NCBI metagenome data: Cleaning dataset and identifying candidate sequences
+Metagenomic contigs were not aligned to the *Onchocerca volvulus* genome to allow for the identification of potential repeats/sequences that may not be present in the published genome.
 
 ### Step 1: Align metagenome data to reference genomes to remove contaminants
 - Script: job001-bwa-align-smansoni.sh
@@ -79,4 +80,8 @@ Clustered Trinity contigs at 95% similarity.
 - A list of what this script does, in order of operation:
   - Python script uses a list containing the taxonomy ID for *Loa loa* to create a list of contigs that were not assigned as *Loa loa* and should be kept in the dataset.
   - Run seqtk using the list output by the python script to extract the contigs with no *Loa loa* hits from the contigs file.
+
+#### Remove *Onchocerca ochengi* contigs
+- Script: job013-extract-noochengihits.sh and remove-ochengihits.py
+- Same as above, this time for *Onchocerca ochengi*
 
