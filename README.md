@@ -91,6 +91,10 @@ Here we extract contigs that belong to the phyla we are interested, and then we 
 - Same as above, however first running a BLAST search of O-150 and mitochondrial sequences against our contigs to retrieve a list of contigs that must be removed.
 
 ### Step 8: Extract contigs with high lengths and coverage
+Here, we extract the lengths of our contigs using a Python script. We then map our original reads to our assembled and cleaned contigs. We import our data into R for visualization and identify a threshold minimum cutoff of 2500 mapped reads to select our candidate biomarkers
+- Script: extract_noloaochengiO150mito_contig_lengths.py, job016-bwa-map-reads-to-noloaochengiO150mito-contigs.sh, trinity_cdhit95_high_len_cov.Rmd, and job017-extract-noloaochengiO150mito-rmapmin2500.sh
+
+Resulting contig list was examined by calculating GC % and by using IGV. Candidate biomarkers were selected and tested on the bench.
 
 
 
