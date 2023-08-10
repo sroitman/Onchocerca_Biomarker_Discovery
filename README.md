@@ -68,6 +68,7 @@ Clustered Trinity contigs at 95% similarity.
 - Script: job010-kraken2s.sh
 
 ### Step 7: Remove contaminants (reprise)
+Here we extract contigs that belong to the phyla we are interested, and then we remove contigs that align to other filarial nematode species that are closely related or endemic to the same areas as our target, *Onchocerca volvulus*. We also remove contigs that align with the established biomarker for this species, O-150, as well as contigs that align with *O. volvulus* mitochondrial sequences.
 
 #### Extract reads belonging to Nematoda and Platyhelminthes
 - Script: job011-extract-nemaplaty.sh and extract_taxids_only_nema_platy.py
@@ -84,4 +85,13 @@ Clustered Trinity contigs at 95% similarity.
 #### Remove *Onchocerca ochengi* contigs
 - Script: job013-extract-noochengihits.sh and remove-ochengihits.py
 - Same as above, this time for *Onchocerca ochengi*
+
+#### Remove O-150 contigs and mitochondria
+- Script: job014-blast-O150-and-mito.sh, remove-O-150-mito.py, and job015-extract-noO150mito.sh
+- Same as above, however first running a BLAST search of O-150 and mitochondrial sequences against our contigs to retrieve a list of contigs that must be removed.
+
+### Step 8: Extract contigs with high lengths and coverage
+
+
+
 
