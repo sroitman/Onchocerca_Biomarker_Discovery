@@ -1,0 +1,146 @@
+---
+title: "noloaochengiO150mito_high_len_cov"
+author: "Sofia Roitman"
+date: "11/9/2021"
+output: html_document
+---
+
+# Set working directory
+```{r}
+setwd("/path/to/wd")
+```
+
+# Load in data files
+```{r}
+# Idxstats file
+## Contains: contig name, length, # reads mapped, # reads unmapped
+loaless75noloaochengiO150mito = read.table("trinity_cdhit95_contigs_loaless75noloaochengiO150mito_aln.sam.bam.sorted.bam.idxstats")
+noloaochengiO150mito = read.table("trinity_cdhit95_contigs_noloaochengiO150mito_aln.sam.bam.sorted.bam.idxstats")
+
+## Add column names
+names(loaless75noloaochengiO150mito)[1] <- "contig_id" 
+names(loaless75noloaochengiO150mito)[2] <- "contig_length" 
+names(loaless75noloaochengiO150mito)[3] <- "reads_mapped" 
+names(loaless75noloaochengiO150mito)[4] <- "reads_unmapped" 
+loaless75noloaochengiO150mito
+
+
+names(noloaochengiO150mito)[1] <- "contig_id" 
+names(noloaochengiO150mito)[2] <- "contig_length" 
+names(noloaochengiO150mito)[3] <- "reads_mapped" 
+names(noloaochengiO150mito)[4] <- "reads_unmapped" 
+noloaochengiO150mito
+
+# Kraken2 file
+## Contains: contig name, taxonomy assignment with tax ID
+#kraken = read.table("Step13_Extracting_high_coverage_length/cdhit95_kraken2_noloaochengiO150mito_contig_lengths_edited.txt", header = TRUE)
+
+# Make sure the row names match
+#head(idxstats)
+#head(kraken)
+#tail(idxstats)
+#tail(kraken)
+
+# Remove extra row at the end of the file
+ll75noloO150m_final <- loaless75noloaochengiO150mito[-c(24965),]
+noloO150m_final <- noloaochengiO150mito[-c(8645),]
+
+
+```
+
+
+# Histogram: contig_length
+```{r}
+library(ggplot2)
+
+
+ll75noloO150m_histo <- ggplot(ll75noloO150m_final, aes(x=reads_mapped)) + geom_histogram() + xlab("# Reads Mapped") + ylab("Contig Count") + theme_bw() + scale_x_continuous(breaks = seq(0, 10000, by = 1000))
+ll75noloO150m_histo
+ll75noloO150m_final$log_rmap = log(ll75noloO150m_final$reads_mapped)
+log_ll75noloO150m_histo <- ggplot(ll75noloO150m_final, aes(x=log_rmap)) + geom_histogram()
+pdf("loaless75noloaochengiO150mito_rmap_histo.pdf") 
+# 2. Create a plot
+ll75noloO150m_histo
+# Close the pdf file
+dev.off() 
+pdf("loaless75noloaochengiO150mito_log_rmap_histo.pdf") 
+# 2. Create a plot
+log_ll75noloO150m_histo
+# Close the pdf file
+dev.off()
+
+
+
+noloO150m_histo <- ggplot(noloO150m_final, aes(x=reads_mapped)) + geom_histogram() + xlab("# Reads Mapped") + ylab("Contig Count") + theme_bw() + scale_x_continuous(breaks = seq(0, 10000, by = 1000))
+noloO150m_histo
+noloO150m_final$log_rmap = log(noloO150m_final$reads_mapped)
+log_noloO150m_histo <- ggplot(noloO150m_final, aes(x=log_rmap)) + geom_histogram()
+pdf("noloaochengiO150mito_rmap_histo.pdf") 
+# 2. Create a plot
+noloO150m_histo
+# Close the pdf file
+dev.off() 
+pdf("oloaochengiO150mito_log_rmap_histo.pdf") 
+# 2. Create a plot
+log_noloO150m_histo
+# Close the pdf file
+dev.off()
+
+
+```
+
+# Scatterplot: contig length vs. reads mapped
+```{r}
+ll75noloO150m_scatter <- ggplot(ll75noloO150m_final, aes(x=contig_length, y=reads_mapped)) + geom_point(size=2, color = "blue")
+pdf("loaless75noloaochengiO150mito_scatter.pdf") 
+# 2. Create a plot
+ll75noloO150m_scatter
+# Close the pdf file
+dev.off() 
+
+
+
+noloO150m_scatter <- ggplot(noloO150m_final, aes(x=contig_length, y=reads_mapped)) + geom_point(size=2, color = "blue")
+pdf("noloaochengiO150mito_scatter.pdf") 
+# 2. Create a plot
+noloO150m_scatter
+# Close the pdf file
+dev.off() 
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
